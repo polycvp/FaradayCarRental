@@ -13,6 +13,18 @@
     </head>
     <body>
         <h1>Book a car</h1>
+        <div id="availableCars">
+            <table id="availableCarsTable" border="1" cellspacing="0">
+                <tr>
+                    <td>Licence Plate No.</td>
+                    <td>Type</td>
+                </tr>
+                <c:forEach var="car" items="${cars}" varStatus="counter">
+                    <td>${cars.}</td>
+                    <td></td>
+                </c:forEach>
+            </table>
+        </div>
         <form>
             
         </form>
