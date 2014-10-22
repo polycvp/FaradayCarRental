@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class BookingCRUDFacade {
     // An instance of a DAO to work with a booking
-    private BookingDAO dao = new DerbyBookingDAO();
+    private BookingDAO dao = new JdbcBookingDAO();
     
     /**
      * Find a booking based on the driver licence numnber

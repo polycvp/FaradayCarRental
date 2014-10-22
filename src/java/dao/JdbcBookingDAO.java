@@ -12,10 +12,10 @@ import java.util.logging.Logger;
 /**
  * Concrete implementation of a BookingDAO for use with a Derby database
  */
-public class DerbyBookingDAO implements BookingDAO {
+public class JdbcBookingDAO implements BookingDAO {
     
     private Connection conn = null;
-    private static String dbURL = "jdbc:derby://localhost:1527/myDB";
+    private static String dbURL = "jdbc://localhost:1521/cph-vc";
 
     @Override
     public Booking loadBooking(String driverLicence) {
@@ -34,7 +34,7 @@ public class DerbyBookingDAO implements BookingDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
-            Logger.getLogger(DerbyBookingDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JdbcBookingDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return booking;
     }
@@ -75,6 +75,10 @@ public class DerbyBookingDAO implements BookingDAO {
     @Override
     public void deleteBooking(Booking booking) {
         throw new UnsupportedOperationException("Not supported yet.");
-    } 
+    }
+    
+    public void getAvailableCars() {
+        
+    }
     
 }
