@@ -2,6 +2,9 @@
 package dao;
 
 import data.Booking;
+import data.Car;
+import java.util.Date;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -25,6 +28,14 @@ public class BookingCRUDFacade {
         Booking booking = null;
         booking = dao.loadBooking(driverLicence);
         return booking;
-    } 
+    }
+    
+    public void setBooking(Booking b) {
+        dao.saveBooking(b);
+    }
+    
+    public List<Car> retriveCars(String place,String type,Date pickupDate) {
+        return dao.getAvailableCars(place,type,pickupDate);
+    }
 }
 

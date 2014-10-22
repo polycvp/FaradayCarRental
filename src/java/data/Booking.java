@@ -22,7 +22,9 @@ public class Booking {
      * ######################
      */
     
-    
+    public Booking() {
+        
+    }
     
     public String getBookingID() {
         return bookingID;

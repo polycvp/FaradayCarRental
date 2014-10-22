@@ -2,6 +2,9 @@
 package dao;
 
 import data.Booking;
+import data.Car;
+import java.util.Date;
+import java.util.List;
 /**
  * Interface for implementing access methods for booking DAO concrete classes
  */
@@ -28,4 +31,6 @@ public interface BookingDAO {
      * @param booking   A booking object loaded with booking data
      */
     public void deleteBooking(Booking booking);
+
+    public List<Car> getAvailableCars(String place,String type,Date pickupDate);
 }

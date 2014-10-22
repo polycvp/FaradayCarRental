@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +21,12 @@ public class JdbcBookingDAO implements BookingDAO {
     private Connection conn = null;
     private static String dbURL = "jdbc://localhost:1521/cph-vc";
     private List<Car> cars;
+    private List<Booking> bookings = new ArrayList<Booking>();
 
+    public JdbcBookingDAO() {
+        
+    }
+    
     @Override
     public Booking loadBooking(String driverLicence) {
         Booking booking = null;
@@ -73,7 +79,12 @@ public class JdbcBookingDAO implements BookingDAO {
    
     @Override
     public void saveBooking(Booking booking) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            bookings.add(booking);
+        }
+        catch (Exception e) {
+            
+        }
     }
 
     @Override
@@ -81,8 +92,9 @@ public class JdbcBookingDAO implements BookingDAO {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public List<Car> getAvailableCars() 
+    public List<Car> getAvailableCars(String place,String type,Date pickupDate) 
     {
+        //assume all this cars are avaliable
         cars = new ArrayList<Car>();
         cars.add(new Car("FG78GF2312","A"));
         cars.add(new Car("GH56BV4876","A"));
@@ -94,7 +106,9 @@ public class JdbcBookingDAO implements BookingDAO {
         cars.add(new Car("KL34DQ9764","D"));
         cars.add(new Car("CV76ER2345","E"));
         cars.add(new Car("RT72HG1045","F"));
-        
+        for (Car c: cars) {
+            c.setType(type);
+        }
         return cars;
     }
     

@@ -6,7 +6,11 @@
 
 package bean;
 
+import dao.BookingCRUDFacade;
+import data.Car;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -14,5 +18,13 @@ import java.io.Serializable;
  */
 public class CarBean implements Serializable
 {
+    private BookingCRUDFacade bcf;
     
+    public CarBean() {
+        bcf = new BookingCRUDFacade();
+    }
+    
+    public List<Car> retrieveCars(String place,String type,Date pickupDate) {
+        return bcf.retriveCars(place, type, pickupDate);
+    }
 }
