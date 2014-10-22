@@ -1,27 +1,10 @@
-<%-- 
-    Document   : bookCar
-    Created on : 22-Oct-2014, 16:12:11
-    Author     : Jon
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="js/jquery_1.7.2_jquery.min.js"></script>
-        <script type="text/javascript" src="js/ui_1.11.1_jquery-ui.js"></script>
-        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="js/bookCar.js"></script>
-        <link rel="stylesheet" type="text/css" href="js/jqueryui_1.11.1_themes_smoothness_jquery-ui.css">
-        <title>JSP Page</title>
-    </head>
-    <body>
+ <%@ include file="header.jsp" %>
         <h1>Book a car</h1>
         <div id="availableCars">
             <table id="availableCarsTable" border="1" cellspacing="0">
                 <tr>
-                    <td>Licence Plate No.</td>
+                    <td>License Plate No.</td>
                     <td>Type</td>
                 </tr>
                 <c:forEach var="car" items="${cars}" varStatus="counter">
@@ -30,25 +13,30 @@
                 </c:forEach>
             </table>
         </div>
-        <form>
-            <fieldset>
-                <label for="licencePlateNoBooking">Licence Plate Number: </label>
-                <input type="text" id="licencePlateNoBooking"/>
-                
-                <label for="pickupPlaceBooking">Pickup Place: </label>
-                <input type="text" id="pickupPlaceBooking"/>
-                
-                <label for="deliveryPlaceBooking"></label>
-                <input type="text" id="deliveryPlaceBooking"/>
-                
-                <label for="pickupDatePicker">Pickup Date: </label>
-                <input type="text" id="pickupDatePicker"/>
-                
-                <label for="deliveryDatePicker">Delivery Date: </label>
-                <input type="text" id="deliveryDatePicker"/>
-                
-                <input type="submit" id="submitBookingButton" value="Submit Booking"/>
-            </fieldset>
+        <form action="FaradayCarRental/BookingServlet">
+             <table border="1" cellpadding="5" cellspacing="5">
+        <tr>
+            <th class="scheduleTableSides">License Plate Number: </th>
+            <td><input type="text" name="license_no" id="license_no" /></td>
+        </tr>
+        <tr>
+            <th class="scheduleTableSides">Pickup Place: </th>
+            <td><input type="text" id="pickupPlaceBooking"/></td>
+        </tr>
+        <tr>
+            <th class="scheduleTableSides">Delivery Place </th>
+            <td><input type="text" id="deliveryPlaceBooking"/></td>
+        </tr>
+          <tr>
+            <th class="scheduleTableSides">Pickup Date: </th>
+            <td><input type="text" name="date" id="datepicker" /></td>
+        </tr>
+        <tr>
+            <th class="scheduleTableSides">Delivery Date: </th>
+            <td><input type="text" name="date" id="datepicker" /></td>
+        </tr>
+    </table>
+        <a href="/FaradayCarRental/BookingServlet?command=confirm" class="anchorButtons">Submit booking</a>
         </form>
-    </body>
-</html>
+<%@ include file="footer.jsp" %>
+

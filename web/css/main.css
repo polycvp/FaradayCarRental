@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 15, 2014, 3:43:42 AM
+    Author     : rvhaley
+*/
+
+table {
+    border-collapse: collapse;
+}
+
+.scheduleTableSides {
+    text-align: left;
+    background-color: lightgray;
+}
+
+div#headerDiv {
+    background-color: lightgray;
+    border-radius: 25px;
+    border-color: black;
+    box-shadow: 10px 10px 5px grey;
+}
+
+div.pageTitleDiv {
+    background-color: lightgray;
+    border-radius: 25px;
+    width: 30%;
+}
+
+#scheduleTableHeader {
+    background-color: lightgray;
+}
+
+#headerTitle, #footerCreated, #navDiv {
+    text-align: center;
+}
+
+#headerTitle, .pageTitle {
+    font-family: lintelregular;
+}
