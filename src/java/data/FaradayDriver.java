@@ -30,9 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "FARADAY_DRIVER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FaradayDriver.findAll", query = "SELECT f FROM FaradayDriver f"),
-    @NamedQuery(name = "FaradayDriver.findByLicenceNo", query = "SELECT f FROM FaradayDriver f WHERE f.licenceNo = :licenceNo"),
-    @NamedQuery(name = "FaradayDriver.findByName", query = "SELECT f FROM FaradayDriver f WHERE f.name = :name")})
+    @NamedQuery(name = "FaradayDriver.findAll", query = "SELECT f FROM FaradayDriver f")})
 public class FaradayDriver implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

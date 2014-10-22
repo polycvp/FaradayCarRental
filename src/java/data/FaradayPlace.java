@@ -7,7 +7,6 @@
 package data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -32,8 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "FARADAY_PLACE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FaradayPlace.findAll", query = "SELECT f FROM FaradayPlace f"),
-    @NamedQuery(name = "FaradayPlace.findById", query = "SELECT f FROM FaradayPlace f WHERE f.id = :id")})
+    @NamedQuery(name = "FaradayPlace.findAll", query = "SELECT f FROM FaradayPlace f")})
 public class FaradayPlace implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -41,7 +39,9 @@ public class FaradayPlace implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    private BigDecimal id;
+    private int id;
+    @OneToMany(mappedBy = "parkingPlaceId")
+    private List<FaradayCar> faradayCarList;
     @JoinColumn(name = "HOTEL_ID", referencedColumnName = "ID")
     @ManyToOne
     private FaradayHotel hotelId;
@@ -56,16 +56,25 @@ public class FaradayPlace implements Serializable {
     public FaradayPlace() {
     }
 
-    public FaradayPlace(BigDecimal id) {
+    public FaradayPlace(int id) {
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    @XmlTransient
+    public List<FaradayCar> getFaradayCarList() {
+        return faradayCarList;
+    }
+
+    public void setFaradayCarList(List<FaradayCar> faradayCarList) {
+        this.faradayCarList = faradayCarList;
     }
 
     public FaradayHotel getHotelId() {
@@ -100,26 +109,6 @@ public class FaradayPlace implements Serializable {
 
     public void setFaradayBookingList1(List<FaradayBooking> faradayBookingList1) {
         this.faradayBookingList1 = faradayBookingList1;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FaradayPlace)) {
-            return false;
-        }
-        FaradayPlace other = (FaradayPlace) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

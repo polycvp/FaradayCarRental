@@ -7,8 +7,6 @@
 package data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -31,12 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "FARADAY_HOTEL")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FaradayHotel.findAll", query = "SELECT f FROM FaradayHotel f"),
-    @NamedQuery(name = "FaradayHotel.findById", query = "SELECT f FROM FaradayHotel f WHERE f.id = :id"),
-    @NamedQuery(name = "FaradayHotel.findByHotelNo", query = "SELECT f FROM FaradayHotel f WHERE f.hotelNo = :hotelNo"),
-    @NamedQuery(name = "FaradayHotel.findByName", query = "SELECT f FROM FaradayHotel f WHERE f.name = :name"),
-    @NamedQuery(name = "FaradayHotel.findByAddress", query = "SELECT f FROM FaradayHotel f WHERE f.address = :address"),
-    @NamedQuery(name = "FaradayHotel.findByRating", query = "SELECT f FROM FaradayHotel f WHERE f.rating = :rating")})
+    @NamedQuery(name = "FaradayHotel.findAll", query = "SELECT f FROM FaradayHotel f")})
 public class FaradayHotel implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -44,11 +37,11 @@ public class FaradayHotel implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    private BigDecimal id;
+    private int id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "HOTEL_NO")
-    private BigInteger hotelNo;
+    private int hotelNo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -62,18 +55,18 @@ public class FaradayHotel implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "RATING")
-    private BigInteger rating;
+    private int rating;
     @OneToMany(mappedBy = "hotelId")
     private List<FaradayPlace> faradayPlaceList;
 
     public FaradayHotel() {
     }
 
-    public FaradayHotel(BigDecimal id) {
+    public FaradayHotel(int id) {
         this.id = id;
     }
 
-    public FaradayHotel(BigDecimal id, BigInteger hotelNo, String name, String address, BigInteger rating) {
+    public FaradayHotel(int id, int hotelNo, String name, String address, int rating) {
         this.id = id;
         this.hotelNo = hotelNo;
         this.name = name;
@@ -81,19 +74,19 @@ public class FaradayHotel implements Serializable {
         this.rating = rating;
     }
 
-    public BigDecimal getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public BigInteger getHotelNo() {
+    public int getHotelNo() {
         return hotelNo;
     }
 
-    public void setHotelNo(BigInteger hotelNo) {
+    public void setHotelNo(int hotelNo) {
         this.hotelNo = hotelNo;
     }
 
@@ -113,11 +106,11 @@ public class FaradayHotel implements Serializable {
         this.address = address;
     }
 
-    public BigInteger getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(BigInteger rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -128,26 +121,6 @@ public class FaradayHotel implements Serializable {
 
     public void setFaradayPlaceList(List<FaradayPlace> faradayPlaceList) {
         this.faradayPlaceList = faradayPlaceList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FaradayHotel)) {
-            return false;
-        }
-        FaradayHotel other = (FaradayHotel) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

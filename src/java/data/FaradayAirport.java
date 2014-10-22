@@ -7,8 +7,6 @@
 package data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -30,9 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "FARADAY_AIRPORT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FaradayAirport.findAll", query = "SELECT f FROM FaradayAirport f"),
-    @NamedQuery(name = "FaradayAirport.findById", query = "SELECT f FROM FaradayAirport f WHERE f.id = :id"),
-    @NamedQuery(name = "FaradayAirport.findByAirportCode", query = "SELECT f FROM FaradayAirport f WHERE f.airportCode = :airportCode")})
+    @NamedQuery(name = "FaradayAirport.findAll", query = "SELECT f FROM FaradayAirport f")})
 public class FaradayAirport implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -40,39 +36,39 @@ public class FaradayAirport implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    private BigDecimal id;
+    private int id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "AIRPORT_CODE")
-    private BigInteger airportCode;
+    private int airportCode;
     @OneToMany(mappedBy = "airportId")
     private List<FaradayPlace> faradayPlaceList;
 
     public FaradayAirport() {
     }
 
-    public FaradayAirport(BigDecimal id) {
+    public FaradayAirport(int id) {
         this.id = id;
     }
 
-    public FaradayAirport(BigDecimal id, BigInteger airportCode) {
+    public FaradayAirport(int id, int airportCode) {
         this.id = id;
         this.airportCode = airportCode;
     }
 
-    public BigDecimal getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public BigInteger getAirportCode() {
+    public int getAirportCode() {
         return airportCode;
     }
 
-    public void setAirportCode(BigInteger airportCode) {
+    public void setAirportCode(int airportCode) {
         this.airportCode = airportCode;
     }
 
@@ -83,26 +79,6 @@ public class FaradayAirport implements Serializable {
 
     public void setFaradayPlaceList(List<FaradayPlace> faradayPlaceList) {
         this.faradayPlaceList = faradayPlaceList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FaradayAirport)) {
-            return false;
-        }
-        FaradayAirport other = (FaradayAirport) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

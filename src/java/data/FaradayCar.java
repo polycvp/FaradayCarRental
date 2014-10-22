@@ -32,8 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "FARADAY_CAR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FaradayCar.findAll", query = "SELECT f FROM FaradayCar f"),
-    @NamedQuery(name = "FaradayCar.findByLicensePlateNo", query = "SELECT f FROM FaradayCar f WHERE f.licensePlateNo = :licensePlateNo")})
+    @NamedQuery(name = "FaradayCar.findAll", query = "SELECT f FROM FaradayCar f")})
 public class FaradayCar implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,6 +41,9 @@ public class FaradayCar implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "LICENSE_PLATE_NO")
     private String licensePlateNo;
+    @JoinColumn(name = "PARKING_PLACE_ID", referencedColumnName = "ID")
+    @ManyToOne
+    private FaradayPlace parkingPlaceId;
     @JoinColumn(name = "TYPE_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private FaradayCartype typeId;
@@ -61,6 +63,14 @@ public class FaradayCar implements Serializable {
 
     public void setLicensePlateNo(String licensePlateNo) {
         this.licensePlateNo = licensePlateNo;
+    }
+
+    public FaradayPlace getParkingPlaceId() {
+        return parkingPlaceId;
+    }
+
+    public void setParkingPlaceId(FaradayPlace parkingPlaceId) {
+        this.parkingPlaceId = parkingPlaceId;
     }
 
     public FaradayCartype getTypeId() {

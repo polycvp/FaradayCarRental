@@ -7,7 +7,6 @@
 package data;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -31,10 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "FARADAY_CARTYPE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FaradayCartype.findAll", query = "SELECT f FROM FaradayCartype f"),
-    @NamedQuery(name = "FaradayCartype.findById", query = "SELECT f FROM FaradayCartype f WHERE f.id = :id"),
-    @NamedQuery(name = "FaradayCartype.findByNoOfSeats", query = "SELECT f FROM FaradayCartype f WHERE f.noOfSeats = :noOfSeats"),
-    @NamedQuery(name = "FaradayCartype.findByPrice", query = "SELECT f FROM FaradayCartype f WHERE f.price = :price")})
+    @NamedQuery(name = "FaradayCartype.findAll", query = "SELECT f FROM FaradayCartype f")})
 public class FaradayCartype implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,11 +42,11 @@ public class FaradayCartype implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "NO_OF_SEATS")
-    private BigInteger noOfSeats;
+    private int noOfSeats;
     @Basic(optional = false)
     @NotNull
     @Column(name = "PRICE")
-    private BigInteger price;
+    private int price;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typeId")
     private List<FaradayCar> faradayCarList;
 
@@ -61,7 +57,7 @@ public class FaradayCartype implements Serializable {
         this.id = id;
     }
 
-    public FaradayCartype(String id, BigInteger noOfSeats, BigInteger price) {
+    public FaradayCartype(String id, int noOfSeats, int price) {
         this.id = id;
         this.noOfSeats = noOfSeats;
         this.price = price;
@@ -75,19 +71,19 @@ public class FaradayCartype implements Serializable {
         this.id = id;
     }
 
-    public BigInteger getNoOfSeats() {
+    public int getNoOfSeats() {
         return noOfSeats;
     }
 
-    public void setNoOfSeats(BigInteger noOfSeats) {
+    public void setNoOfSeats(int noOfSeats) {
         this.noOfSeats = noOfSeats;
     }
 
-    public BigInteger getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigInteger price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
