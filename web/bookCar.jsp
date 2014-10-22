@@ -9,6 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="js/jquery_1.7.2_jquery.min.js"></script>
+        <script type="text/javascript" src="js/ui_1.11.1_jquery-ui.js"></script>
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/bookCar.js"></script>
+        <link rel="stylesheet" type="text/css" href="js/jqueryui_1.11.1_themes_smoothness_jquery-ui.css">
         <title>JSP Page</title>
     </head>
     <body>
@@ -36,8 +41,13 @@
                 <label for="deliveryPlaceBooking"></label>
                 <input type="text" id="deliveryPlaceBooking"/>
                 
-                <label for="pickupDateBooking"></label>
-                <input typ
+                <label for="pickupDatePicker">Pickup Date: </label>
+                <input type="text" id="pickupDatePicker"/>
+                
+                <label for="deliveryDatePicker">Delivery Date: </label>
+                <input type="text" id="deliveryDatePicker"/>
+                
+                <input type="submit" id="submitBookingButton" value="Submit Booking"/>
             </fieldset>
         </form>
     </body>
