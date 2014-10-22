@@ -14,6 +14,12 @@ public class Car
 {
     private String licencePlateNo;
     private String type;
+    
+    public Car(String licencePlateNo, String type)
+    {
+        this.licencePlateNo = licencePlateNo;
+        this.type = type;
+    }
 
     public String getLicencePlateNo()
     {

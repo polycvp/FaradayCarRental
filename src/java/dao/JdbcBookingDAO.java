@@ -2,11 +2,14 @@
 package dao;
 
 import data.Booking;
+import data.Car;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -16,6 +19,7 @@ public class JdbcBookingDAO implements BookingDAO {
     
     private Connection conn = null;
     private static String dbURL = "jdbc://localhost:1521/cph-vc";
+    private List<Car> cars;
 
     @Override
     public Booking loadBooking(String driverLicence) {
@@ -77,8 +81,21 @@ public class JdbcBookingDAO implements BookingDAO {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public void getAvailableCars() {
+    public List<Car> getAvailableCars() 
+    {
+        cars = new ArrayList<Car>();
+        cars.add(new Car("FG78GF2312","A"));
+        cars.add(new Car("GH56BV4876","A"));
+        cars.add(new Car("XC34FG8906","B"));
+        cars.add(new Car("QW10ER3456","C"));
+        cars.add(new Car("JH67RT4123","C"));
+        cars.add(new Car("UB53DF7980","C"));
+        cars.add(new Car("ZX34TY0945","D"));
+        cars.add(new Car("KL34DQ9764","D"));
+        cars.add(new Car("CV76ER2345","E"));
+        cars.add(new Car("RT72HG1045","F"));
         
+        return cars;
     }
     
 }
